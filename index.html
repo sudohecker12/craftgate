@@ -528,10 +528,9 @@ let currentUsername = null;
 let unsubMessages   = null;
 
 onAuthStateChanged(auth, async user => {
-const snap = await getDoc(doc(db,'users',user.uid));
-currentUsername = snap.exists() ? snap.data().username : 'vighnesh0095';
-  
-    currentUsername = snap.data().username;
+  if(user) {
+    const snap = await getDoc(doc(db,'users',user.uid));
+    currentUsername = snap.exists() ? snap.data().username : 'vighnesh0095';
     document.getElementById('headerUser').textContent = currentUsername;
     document.getElementById('gate').style.display  = 'none';
     document.getElementById('main').style.display  = 'flex';
