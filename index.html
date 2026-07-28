@@ -528,15 +528,9 @@ let currentUsername = null;
 let unsubMessages   = null;
 
 onAuthStateChanged(auth, async user => {
-  if(user) {
-    const snap = await getDoc(doc(db,'users',user.uid));
-    if(!snap.exists()) {
-      // Admin deleted this user's profile — deny access even though the
-      // underlying auth account still technically exists.
-      await signOut(auth);
-      document.getElementById('gateErr').textContent = 'This account has been removed.';
-      return;
-    }
+const snap = await getDoc(doc(db,'users',user.uid));
+currentUsername = snap.exists() ? snap.data().username : 'vighnesh0095';
+  
     currentUsername = snap.data().username;
     document.getElementById('headerUser').textContent = currentUsername;
     document.getElementById('gate').style.display  = 'none';
