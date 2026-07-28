@@ -698,9 +698,9 @@ window.sendMessage = async () => {
   // Push notification via OneSignal (edit APP_ID and REST_API_KEY below)
   fetch('https://onesignal.com/api/v1/notifications', {
     method:'POST',
-    headers:{'Content-Type':'application/json; charset=utf-8','Authorization':'Basic YOUR_REST_API_KEY'},
+    headers:{'Content-Type':'application/json; charset=utf-8','Authorization':'Basic os_v2_app_qyz6krd345hebabcimc4grsotmzchq3yd4vuvl4jefqmfkaljgcxsjw75rxljpfxtmhtxo5sfgbxowxihe66sxbze5dztpk7brqd3cy'},
     body: JSON.stringify({
-      app_id:'YOUR_ONESIGNAL_APP_ID',
+      app_id:'8633e544-7be7-4e40-8022-4305c3464e9b',
       included_segments:['All'],
       contents:{en:text||'📷 sent an image'},
       headings:{en:currentUsername}
@@ -881,7 +881,7 @@ window.adminDeleteUser = async (uid,username) => {
 // ── OneSignal init (edit YOUR_ONESIGNAL_APP_ID) ──
 window.OneSignalDeferred = window.OneSignalDeferred || [];
 OneSignalDeferred.push(async (OneSignal) => {
-  await OneSignal.init({ appId: 'YOUR_ONESIGNAL_APP_ID' });
+  await OneSignal.init({ appId: '8633e544-7be7-4e40-8022-4305c3464e9b' });
 });
 
 // ── PWA: register service worker (enables "Install app") ──
