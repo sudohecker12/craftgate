@@ -773,7 +773,14 @@ onSnapshot(doc(db,'status','current'), snap => {
   const statusEl = document.getElementById('status-value');
   const countEl = document.getElementById('player-count');
   const namesEl = document.getElementById('player-names');
-  if (!snap.exists()) return;
+
+  if (!snap.exists()) {
+    statusEl.textContent = '⚠ No data yet';
+    statusEl.className = 'status-offline';
+    countEl.textContent = '-';
+    namesEl.innerHTML = '<span class="player-list-empty">Waiting for the app to publish status...</span>';
+    return;
+  }
   const data = snap.data();
 
   if (data.online) {
@@ -791,8 +798,12 @@ onSnapshot(doc(db,'status','current'), snap => {
     countEl.textContent = '-';
     namesEl.innerHTML = '<span class="player-list-empty">Server offline</span>';
   }
+}, err => {
+  const statusEl = document.getElementById('status-value');
+  statusEl.textContent = '⚠ Error: ' + err.code;
+  statusEl.className = 'status-offline';
+  console.log('Status listener error:', err);
 });
-
 // ── ADMIN ──
 window.loadAdminData = async () => {
   if(currentUsername!==ADMIN) return;
