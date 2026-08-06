@@ -754,7 +754,7 @@ window.wakeServer = async () => {
   btn.textContent = '⏳ WAKING...';
   btn.disabled = true;
   try {
-    await fetch('https://trigger.macrodroid.com/32d65ddd-efc0-48b4-b100-280609f77f95/wakeserver', {
+    await fetch('https://craftgate-wake-g0ftcyd8bshdgjh3.centralindia-01.azurewebsites.net/api/startvm', {
       method: 'GET', mode: 'no-cors'
     });
     btn.textContent = '✅ SIGNAL SENT!';
